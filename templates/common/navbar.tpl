@@ -10,6 +10,28 @@
  *}
 <div id="navbar">
 	<ul class="menu">
+	{****************************************	START OF --	PHAENEX CODE -- 	***********************************************}
+	{if ((strcasecmp ( $siteTitle,  "phaenex"))==0)}
+		<li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
+		
+		<table><tr><td height="16px"></td></tr></table>
+		
+		<li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{url page="issue" op="current"}">current issue</a></li>
+		<li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{url page="issue" op="archive"}">{translate key="navigation.archives"}</a></li>
+
+		<table><tr><td height="16px"></td></tr></table>
+
+		<li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{$baseUrl}/index.php/phaenex/about/submissions/callforpapers">call for papers</a></li>		
+		<li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{$baseUrl}/index.php/phaenex/about/submissions/guidelines">guidelines for <br/><br/><span style="padding-left:14px"></span>contributors</a></li>
+
+		<table><tr><td height="16px"></td></tr></table>
+
+		<li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{url page="about" op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li><li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{url page="about" op="contact"}">{translate key="about.contact"}</a></li>
+		<br/><li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{$baseUrl}/index.php/phaenex/about">about</a></li>
+		
+		<table><tr><td height="15px"></td></tr></table>
+		<li><img src="{$baseUrl}/public/journals/3/ae.jpg"  border="0"><a href="{$baseUrl}/index.php/phaenex/index?francais">fran&#231ais</a></li>
+	{else}	
 		<li id="home"><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
 		<li id="about"><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
 
@@ -46,6 +68,7 @@
 				<li class="navItem" id="navItem-{$navItemKey|escape}"><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$baseUrl}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
 			{/if}
 		{/foreach}
+	{/if}  {****************************************	END OF --	PHAENEX CODE -- 	***********************************************}
 	</ul>
 </div>
 
