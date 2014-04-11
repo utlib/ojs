@@ -13,6 +13,11 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{if ((strcasecmp ( $siteTitle,  "phaenex"))==0)}
+	{include file="about/submissionPhaenex.tpl"}
+{/if} 		
+{***********************************************  END OF PHAENEX CODE  *********************************************************}
+{if ((strcasecmp ( $siteTitle,  "phaenex"))!=0)}
 {if $currentJournal->getSetting('journalPaymentsEnabled') && 
 		($currentJournal->getSetting('submissionFeeEnabled') || $currentJournal->getSetting('fastTrackFeeEnabled') || $currentJournal->getSetting('publicationFeeEnabled')) }
 	{assign var="authorFees" value=1}
@@ -96,5 +101,6 @@
 	{/if}
 </div>
 {/if}
+{/if} {*******************************************  END OF ALL JOURNALS CODE  ******************************************************}
 {include file="common/footer.tpl"}
 

@@ -12,7 +12,13 @@
 {assign var="pageTitleTranslated" value=$siteTitle}
 {include file="common/header.tpl"}
 {/strip}
-
+{if ((strcasecmp ( $siteTitle,  "phaenex"))==0)} {************************  PHAENEX CODE   *****************************}
+	{if (substr_count($currentUrl,"francais")>0) }
+		<style type="text/css" media="screen">@import "{$baseUrl}/public/journals/3/english.css";</style>
+	{else}
+		<style type="text/css" media="screen">@import "{$baseUrl}/public/journals/3/francais.css";</style>
+	{/if}
+{/if}{************************  END OF PHAENEX CODE   *****************************}
 {if $journalDescription}
 	<div id="journalDescription">{$journalDescription}</div>
 {/if}

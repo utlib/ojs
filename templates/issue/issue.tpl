@@ -9,7 +9,47 @@
  *
  *}
 {foreach name=sections from=$publishedArticles item=section key=sectionId}
-{if $section.title}<h4 class="tocSectionTitle">{$section.title|escape}</h4>{/if}
+{if $section.title}
+{************************    START OF -- CELT SectionTitle Tweaks -- 	***********************}
+{if ((strcasecmp ( $siteTitle,  "Collected Essays on Learning and Teaching"))==0)}
+{if ((strcasecmp ( $issueHeadingTitle,  "Vol 1 (2008)"))==0)}
+	{if ((strcasecmp ( $section.title,  "Section I:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} Preparing to Teach</h4><br/>
+	{/if}	
+	{if ((strcasecmp ( $section.title,  "Section II:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} In The Classroom</h4><br/>
+	{/if}	
+	{if ((strcasecmp ( $section.title,  "Section III:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} Assessment</h4><br/>
+	{/if}
+{elseif ((strcasecmp ( $issueHeadingTitle,  "Vol 2 (2009)"))==0)}
+	{if ((strcasecmp ( $section.title,  "Section I:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} Preparing to Teach in a Diverse World of Learning</h4><br/>
+	{/if}	
+	{if ((strcasecmp ( $section.title,  "Section II:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} Enhancing Practice in a World of Learning</h4><br/>
+	{/if}	
+	{if ((strcasecmp ( $section.title,  "Section III:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} Assessment, Evaluation, & Reflecting in a World of Learning</h4><br/>
+	{/if}
+{elseif ((strcasecmp ( $issueHeadingTitle,  "Vol 3 (2010)"))==0)}
+	{if ((strcasecmp ( $section.title,  "Section I:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} Practice and Engagement</h4><br/>
+	{/if}	
+	{if ((strcasecmp ( $section.title,  "Section II:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} Identity and Community</h4><br/>
+	{/if}	
+	{if ((strcasecmp ( $section.title,  "Section III:"))==0)}
+		<h4 class="tocSectionTitle">{$section.title|escape} Development and Transitions</h4><br/>
+	{/if}
+{else}
+<h4 class="tocSectionTitle">{$section.title|escape}</h4>
+{/if}
+
+{else}
+<h4 class="tocSectionTitle">{$section.title|escape}</h4>
+{/if}{************************    END OF -- CELT SectionTitle Tweaks -- 	***********************}
+{/if}
 
 {foreach from=$section.articles item=article}
 	{assign var=articlePath value=$article->getBestArticleId($currentJournal)}

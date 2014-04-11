@@ -43,7 +43,7 @@
 			<p>{$journal->getLocalizedDescription()|nl2br}</p>
 		{/if}
 	{/if}
-	<p><a href="{url journal=$journal->getPath()}" class="action">{translate key="site.journalView"}</a> | <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a> | <a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a></p>
+	<p><a href="{if ((strcasecmp ( $journal->getJournalTitle(),"Studies in Social Justice"))==0)}{$baseUrl}/public/journals/7/index.html{else}{url journal=$journal->getPath()}{/if}" class="action">{translate key="site.journalView"}</a> | <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a> | <a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a></p>
 {/iterate}
 {if $journals->wasEmpty()}
 	{translate key="site.noJournals"}

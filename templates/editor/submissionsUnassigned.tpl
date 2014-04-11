@@ -28,7 +28,13 @@
 		<td>{$submission->getId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getSectionAbbrev()|escape}</td>
-		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
+		{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
+				{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
+					<td>N/A</td>
+				{else}
+					<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
+				{/if}
+		{*******  END OF CODE  ----  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  *************}
 		<td><a href="{url op="submission" path=$submission->getId()}" class="action">{$submission->getLocalizedTitle()|strip_tags|truncate:60:"..."}</a></td>
 	</tr>
 	<tr>

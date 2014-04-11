@@ -16,7 +16,13 @@
 		<td width="20%" class="label">{translate key="article.authors"}</td>
 		<td width="80%">
 			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getLocalizedTitle() articleId=$submission->getId()}
-			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
+			{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
+			{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
+				{icon name="mail" url=$url}
+			{else}
+				{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
+			{/if}
+			{*******  END OF CODE  ----  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  *************}
 		</td>
 	</tr>
 	<tr>
