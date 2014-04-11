@@ -121,13 +121,16 @@
 
 <div id="main">
 
+{if ((strcasecmp ( $siteTitle,  "phaenex"))!=0)} {******************	START OF --	ALL JOURNALS CODE -- 	*******************}
+
 {include file="common/navbar.tpl"}
+
 
 <div id="breadcrumb">
 	<a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a> &gt;
 	{if $issue}<a href="{url page="issue" op="view" path=$issue->getBestIssueId($currentJournal)}" target="_parent">{$issue->getIssueIdentification(false,true)|escape}</a> &gt;{/if}
 	<a href="{url page="article" op="view" path=$articleId|to_array:$galleyId}" class="current" target="_parent">{$article->getFirstAuthor(true)|escape}</a>
 </div>
-
+{/if}	{************************* END OF ALL JOURNALS -- CODE *******************************}
 <div id="content">
 
