@@ -172,7 +172,7 @@ class Upgrade extends Installer {
 				case 3: // ISSUE_LABEL_YEAR
 					$settings['publicationFormatYear'] = true;
 					break;
- 				case 2: // ISSUE_LABEL_VOL_YEAR
+				case 2: // ISSUE_LABEL_VOL_YEAR
 					$settings['publicationFormatVolume'] = true;
 					$settings['publicationFormatYear'] = true;
 					break;
@@ -304,7 +304,6 @@ class Upgrade extends Installer {
 			'metaCoverageChronExamples' => 'metaCoverageChronExamples',
 			'metaCoverageResearchSampleExamples' => 'metaCoverageResearchSampleExamples',
 			'metaTypeExamples' => 'metaTypeExamples',
-			'metaCitations' => 'metaCitations',
 			// Setup page 4
 			'pubFreqPolicy' => 'pubFreqPolicy',
 			'copyeditInstructions' => 'copyeditInstructions',
@@ -1122,8 +1121,9 @@ class Upgrade extends Installer {
 				$assocId = $row['article_id'];
 			};
 
-			$day = date('Ymd', strtotime($row['date']));
-			$tempStatsDao->insert($assocType, $assocId, $day, $countryId, $region, $cityName, $fileType, $loadId);
+			$recordTimestamp = strtotime($row['date']);
+			$day = date('Ymd', $recordTimestamp);
+			$tempStatsDao->insert($assocType, $assocId, $day, $recordTimestamp, $countryId, $region, $cityName, $fileType, $loadId);
 		}
 
 		switch (Config::getVar('database', 'driver')) {
@@ -1132,7 +1132,7 @@ class Upgrade extends Installer {
 				$monthSql = 'extract(YEAR_MONTH from tr.day)';
 				break;
 			case 'postgres':
-				$monthSql = 'to_char(to_date(tr.day, "YYYYMMDD"), "YYYYMM")';
+				$monthSql = 'to_char(to_date(to_char(tr.day, \'99999999\'), \'YYYYMMDD\'), \'YYYYMM\')';
 				break;
 		}
 
