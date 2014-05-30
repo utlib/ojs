@@ -13,7 +13,14 @@
 {include file="common/header.tpl"}
 {/strip}
 <div id="authorDetails">
-<h3>{$lastName|escape}, {$firstName|escape}{if $middleName} {$middleName|escape}{/if}{if $affiliation}, {$affiliation|escape}{/if}{if $country}, {$country|escape}{/if}</h3>
+<h3>{$lastName|escape}, {$firstName|escape}{if $middleName} {$middleName|escape}{/if}
+	{**************************************** START OF --PHAENEX CODE --**********************************************}
+	{if ((strcasecmp ( $siteTitle,  "phaenex"))!=0)}  
+	{if $affiliation}, {$affiliation|escape}{/if}{if $country}, {$country|escape}{/if}	
+	{/if}
+	{**************************************** END OF -- PHAENEX CODE --***********************************************}
+</h3>
+
 <ul>
 {foreach from=$publishedArticles item=article}
 	{assign var=issueId value=$article->getIssueId()}
