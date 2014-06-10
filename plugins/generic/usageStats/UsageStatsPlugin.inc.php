@@ -213,7 +213,9 @@ class UsageStatsPlugin extends GenericPlugin {
 		}
 
 		if ($usageEvent) {
-			$this->_writeUsageEventInLogFile($usageEvent);
+			if(!preg_match('/vlad@uwindsor.ca/',$usageEvent['userAgent'])) {		
+				$this->_writeUsageEventInLogFile($usageEvent);
+			}			
 		}
 
 		return false;
