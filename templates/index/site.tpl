@@ -49,8 +49,16 @@
 		<p>{$journal->getLocalizedDescription()|nl2br}</p>
 	{/if}
 
-	<p><a href="{if ((strcasecmp ( $journal->getJournalTitle(),"Studies in Social Justice"))==0)}{$baseUrl}/public/journals/7/index.html{else}{url journal=$journal->getPath()}{/if}" class="action">{translate key="site.journalView"}</a> | <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a> | <a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a></p>
+	<p><a href="{url journal=$journal->getPath()}{/if}" class="action">{translate key="site.journalView"}</a> | <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a> | <a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a></p>
 {/iterate}
+<div style="clear:left;">
+<h3>Studies in Social Justice</h3>
+<p></p>
+<p>Studies in Social Justice publishes articles on issues dealing with the social, cultural, economic, political, and philosophical problems associated with the struggle for social justice. This interdisciplinary journal aims to publish work that links theory to social change and the analysis of substantive issues. The journal welcomes heterodox contributions that are critical of established paradigms of inquiry.</p>
+<p>The journal focuses on debates that move beyond conventional notions of social justice, and views social justice as a critical concept that is integral in the analysis of policy formation, rights, participation, social movements, and transformations. Social justice is analysed in the context of processes involving nationalism, social and public policy, globalization, diasporas, culture, gender, ethnicity, sexuality, welfare, poverty, war, and other social phenomena. It endeavours to cover questions and debates ranging from governance to democracy, sustainable environments, and human rights, and to introduce new work on pressing issues of social justice throughout the world.</p>
+<p></p>
+<p><a href="http://brock.scholarsportal.info/journals/public/journals/12/index.html" class="action">{translate key="site.journalView"}</a> | <a href="http://brock.scholarsportal.info/journals/index.php/SSJ/issue/current" class="action">{translate key="site.journalCurrent"}</a> | <a href="http://brock.scholarsportal.info/journals/index.php/SSJ/user/register" class="action">{translate key="site.journalRegister"}</a></p>
+</div>
 
 {include file="common/footer.tpl"}
 
