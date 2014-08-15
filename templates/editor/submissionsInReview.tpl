@@ -43,7 +43,7 @@
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getSectionAbbrev()|escape}</td>
 		{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}{**INFORMAL LOGIC -- Remove Author Field for SubmissionsInReview **}	
-				<td>N/A</td>
+				<td>[Hidden]</td>
 			{else}
 				<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		{/if}{*******  END OF CODE  ----  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  *************}

@@ -21,7 +21,7 @@
 			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getLocalizedTitle() articleId=$submission->getId()}
 			{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
 		 	{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
-				{icon name="mail" url=$url}
+				[Hidden] {icon name="mail" url=$url}
 			{else}
 				{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
 			{/if}
@@ -75,10 +75,23 @@
 	<tr>
 		<td class="label">{translate key="submission.submitter"}</td>
 		<td colspan="2" class="value">
-			{assign var="submitter" value=$submission->getUser()}
-			{assign var=emailString value=$submitter->getFullName()|concat:" <":$submitter->getEmail():">"}
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags articleId=$submission->getId()}
-			{$submitter->getFullName()|escape} {icon name="mail" url=$url}
+			{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
+		 	{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
+				{assign var="submitter" value=$submission->getUser()}
+				{assign var=emailString value=$submitter->getFullName()|concat:" <":$submitter->getEmail():">"}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags articleId=$submission->getId()}
+				[Hidden] {icon name="mail" url=$url}
+			{else}
+				{assign var="submitter" value=$submission->getUser()}
+				{assign var=emailString value=$submitter->getFullName()|concat:" <":$submitter->getEmail():">"}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags articleId=$submission->getId()}
+				{$submitter->getFullName()|escape} {icon name="mail" url=$url}
+			{/if}
+			{*******  END OF CODE  ----  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  *************}
+			
+			
+			
+			
 		</td>
 	</tr>
 	<tr>

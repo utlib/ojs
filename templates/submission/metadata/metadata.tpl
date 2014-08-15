@@ -23,9 +23,19 @@
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
 		<td width="80%" class="value">
-			{assign var=emailString value=$author->getFullName()|concat:" <":$author->getEmail():">"}
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags articleId=$submission->getId()}
-			{$author->getFullName()|escape} {icon name="mail" url=$url}
+			{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
+		 	{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
+				{assign var=emailString value=$author->getFullName()|concat:" <":$author->getEmail():">"}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags articleId=$submission->getId()}
+				[Hidden] {icon name="mail" url=$url}
+			{else}
+				{assign var=emailString value=$author->getFullName()|concat:" <":$author->getEmail():">"}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags articleId=$submission->getId()}
+				{$author->getFullName()|escape} {icon name="mail" url=$url}
+			{/if}
+			{*******  END OF CODE  ----  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  *************}
+			
+			
 		</td>
 	</tr>
 	{if $author->getData('orcid')}
@@ -42,11 +52,29 @@
 	{/if}
 	<tr valign="top">
 		<td class="label">{translate key="user.affiliation"}</td>
-		<td class="value">{$author->getLocalizedAffiliation()|escape|nl2br|default:"&mdash;"}</td>
+		<td class="value">
+			{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
+		 	{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
+				[Hidden]
+			{else}
+				{$author->getLocalizedAffiliation()|escape|nl2br|default:"&mdash;"}
+			{/if}
+			{*******  END OF CODE  ----  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  *************}
+			
+		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="common.country"}</td>
-		<td class="value">{$author->getCountryLocalized()|escape|default:"&mdash;"}</td>
+		<td class="value">
+			{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
+		 	{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
+				[Hidden]
+			{else}
+				{$author->getCountryLocalized()|escape|default:"&mdash;"}
+			{/if}
+			{*******  END OF CODE  ----  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  *************}
+			
+		</td>
 	</tr>
 	{if $currentJournal->getSetting('requireAuthorCompetingInterests')}
 		<tr valign="top">
@@ -59,7 +87,16 @@
 	{/if}
 	<tr valign="top">
 		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$author->getLocalizedBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		<td class="value">
+			{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
+		 	{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
+				[Hidden]
+			{else}
+				{$author->getLocalizedBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}
+			{/if}
+			{*******  END OF CODE  ----  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  *************}
+			
+		</td>
 	</tr>
 	{if $author->getPrimaryContact()}
 		<tr valign="top">

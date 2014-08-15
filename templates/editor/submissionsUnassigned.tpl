@@ -30,7 +30,7 @@
 		<td>{$submission->getSectionAbbrev()|escape}</td>
 		{********  INFORMAL LOGIC -- Remove Author Field for Submissions IN REVIEW  **********}	
 				{if ((strcasecmp ( $siteTitle,  "Informal Logic"))==0)}
-					<td>N/A</td>
+					<td>[Hidden]</td>
 				{else}
 					<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 				{/if}
