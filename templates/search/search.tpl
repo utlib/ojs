@@ -11,7 +11,9 @@
 {assign var="pageTitle" value="navigation.search"}
 {include file="common/header.tpl"}
 {/strip}
-
+{* remove supplementaryFiles field and Index Terms for Iter journals qua|eth|renref|reed|confrat|emw *}
+{assign var="isIter" value=0}
+{if preg_match('/index.php\/(qua|eth|renref|reed|confrat|emw)/i', $currentUrl)}{assign var="isIter" value=1}{/if}
 <div id="search">
 	<script type="text/javascript">
 		$(function() {ldelim}
@@ -70,7 +72,9 @@
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="title" filterValue=$title key="article.title"}
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="abstract" filterValue=$abstract key="search.abstract"}
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="galleyFullText" filterValue=$galleyFullText key="search.fullText"}
+						{if not $isIter}
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="suppFiles" filterValue=$suppFiles key="article.suppFiles"}
+						{/if}
 					{/if}
 					{if $dateFrom == '--' || $dateTo == '--'}
 						<tr valign="top">
@@ -79,6 +83,7 @@
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterType="date" filterName="dateFrom" filterValue=$dateFrom startYear=$startYear endYear=$endYear key="search.dateFrom"}
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterType="date" filterName="dateTo" filterValue=$dateTo startYear=$startYear endYear=$endYear key="search.dateTo"}
 					{/if}
+					{if not $isIter}
 					{if empty($discipline) || empty($subject) || empty($type) || empty($coverage)}
 						<tr valign="top">
 							<td colspan="2" class="label"><h4>{translate key="search.indexTerms"}</h4></td>
@@ -88,6 +93,7 @@
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="type" filterValue=$type key="search.typeMethodApproach"}
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="coverage" filterValue=$coverage key="search.coverage"}
 						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="indexTerms" filterValue=$indexTerms key="search.indexTermsLong"}
+					{/if}
 					{/if}
 				</table>
 				<p><input type="submit" value="{translate key="common.search"}" class="button defaultButton" /></p>

@@ -32,6 +32,8 @@
 		<td>
 			{assign var=editAssignments value=$submission->getEditAssignments()}
 			{foreach from=$editAssignments item=editAssignment}
+				
+			{if $editAssignment->getIsEditor()}
 				{assign var=emailString value=$editAssignment->getEditorFullName()|concat:" <":$editAssignment->getEditorEmail():">"}
 				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags articleId=$submission->getId()}
 				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
@@ -43,6 +45,7 @@
 					{/if}
 				{/if}
 				<br/>
+			{/if}			
 			{foreachelse}
 				{translate key="common.noneAssigned"}
 			{/foreach}

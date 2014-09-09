@@ -49,12 +49,20 @@
 		<td>
 			{assign var=emailString value=$logEntry->getUserFullName()|concat:" <":$logEntry->getUserEmail():">"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getEventTitle()|translate articleId=$submission->getId()}
-			{$logEntry->getUserFullName()|escape} {icon name="mail" url=$url}
+			{if strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor') && $logEntry->getAssocTypeString() = 'AUT'}
+				[Author Name Hidden from Section Editors]
+			{else}
+				{$logEntry->getUserFullName()|escape} {icon name="mail" url=$url}
+			{/if}
 		</td>
 		<td>
 			{translate key=$logEntry->getEventTitle()}
 			<br />
+			{if strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor') && $logEntry->getAssocTypeString() == 'AUT'}
+				[Message Hidden from Section Editors]
+			{else}
 			{$logEntry->getTranslatedMessage()|strip_tags|truncate:60:"..."|escape}
+			{/if}
 		</td>
 		<td align="right"><a href="{url op="submissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url page="editor" op="clearSubmissionEventLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')" class="icon">{translate key="common.delete"}</a>{/if}</td>
 	</tr>

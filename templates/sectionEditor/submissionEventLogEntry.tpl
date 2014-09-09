@@ -46,7 +46,11 @@
 		<td class="value">
 			{assign var=emailString value=$logEntry->getUserFullName()|concat:" <":$logEntry->getUserEmail():">"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getEventTitle()|translate articleId=$submission->getId()}
-			{$logEntry->getUserFullName()|escape} {icon name="mail" url=$url}
+			{if strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor') && $logEntry->getAssocTypeString() == 'AUT'}
+				[Author Name Hidden from Section Editors]
+			{else}
+				{$logEntry->getUserFullName()|escape} {icon name="mail" url=$url}
+			{/if}
 		</td>
 	</tr>
 	<tr valign="top">
@@ -54,7 +58,11 @@
 		<td class="value">
 			<strong>{translate key=$logEntry->getEventTitle()}</strong>
 			<br /><br />
-			{$logEntry->getMessage()|strip_unsafe_html|nl2br}
+			{if strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor') && $logEntry->getAssocTypeString() == 'AUT'}
+				[Message Hidden from Section Editors]
+			{else}
+				{$logEntry->getMessage()|strip_unsafe_html|nl2br}
+			{/if}
 		</td>
 	</tr>
 </table>

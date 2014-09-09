@@ -15,7 +15,11 @@
 		<td width="5%">{sort_search key="common.id" sort="id"}</td>
 		<td width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_search key="submissions.submit" sort="submitDate"}</td>
 		<td width="5%">{sort_search key="submissions.sec" sort="section"}</td>
-		<td width="20%">{sort_search key="article.authors" sort="authors"}</td>
+
+		{if !strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor')}
+			<td width="20%">{sort_search key="article.authors" sort="authors"}</td>
+		{/if}
+
 		<td width="30%">{sort_search key="article.title" sort="title"}</td>
 		<td width="30%">
 			{translate key="submission.peerReview"}
@@ -39,7 +43,9 @@
 		<td>{$submission->getId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getSectionAbbrev()|escape}</td>
-		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
+		{if !strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor')}
+			<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
+		{/if}
 		<td><a href="{url op="submissionReview" path=$submission->getId()}" class="action">{$submission->getLocalizedTitle()|strip_tags|truncate:40:"..."}</a></td>
 		<td>
 		<table width="100%">

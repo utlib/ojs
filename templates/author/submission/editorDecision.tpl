@@ -27,6 +27,7 @@
 		</td>
 	</tr>
 	<tr valign="top">
+	{if !strpos($smarty.server.PHP_SELF, '/ergo/author')}		
 		<td class="label" width="20%">
 			{translate key="submission.notifyEditor"}
 		</td>
@@ -42,6 +43,7 @@
 				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 			{/if}
 		</td>
+	{/if}
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">

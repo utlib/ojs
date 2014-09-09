@@ -10,10 +10,12 @@
 <div id="metadata">
 <h3>{translate key="submission.metadata"}</h3>
 
-{if $canEditMetadata}
-	<p><a href="{url op="viewMetadata" path=$submission->getId()}" class="action">{translate key="submission.editMetadata"}</a></p>
-	{call_hook name="Templates::Submission::Metadata::Metadata::AdditionalEditItems"}
-{/if}
+{if !strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor')}
+	
+	{if $canEditMetadata}
+		<p><a href="{url op="viewMetadata" path=$submission->getId()}" class="action">{translate key="submission.editMetadata"}</a></p>
+		{call_hook name="Templates::Submission::Metadata::Metadata::AdditionalEditItems"}
+	{/if}
 
 <div id="authors">
 <h4>{translate key="article.authors"}</h4>
@@ -74,6 +76,7 @@
 	{/foreach}
 </table>
 </div>
+{/if}
 
 <div id="titleAndAbstract">
 <h4>{translate key="submission.titleAndAbstract"}</h4>

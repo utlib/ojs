@@ -19,13 +19,15 @@
 {/if}
 
 <ul class="plain">
+{if $siteTitle != "Studies in Political Economy"}
 	<li>&#187; <a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
+{/if}
 	{if $currentJournal->getLocalizedSetting('authorGuidelines') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
 	{if $currentJournal->getLocalizedSetting('copyrightNotice') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
 	{if $currentJournal->getLocalizedSetting('privacyStatement') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
 	{if $authorFees}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorFees"}">{translate key="about.authorFees"}</a></li>{/if}	
 </ul>
-
+{if $siteTitle != "Studies in Political Economy"}
 <div id="onlineSubmissions"><h3>{translate key="about.onlineSubmissions"}</h3>
 <p>
 	{translate key="about.onlineSubmissions.haveAccount" journalTitle=$siteTitle|escape}<br />
@@ -36,7 +38,7 @@
 	<a href="{url page="user" op="register"}" class="action">{translate key="about.onlineSubmissions.registration"}</a>
 </p>
 <p>{translate key="about.onlineSubmissions.registrationRequired"}</p>
-
+{/if}
 <div class="separator">&nbsp;</div>
 </div>
 

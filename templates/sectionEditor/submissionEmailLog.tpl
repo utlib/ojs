@@ -47,8 +47,13 @@
 {iterate from=emailLogEntries item=logEntry}
 	<tr valign="top">
 		<td>{$logEntry->getDateSent()|date_format:$dateFormatShort}</td>
-		<td>{$logEntry->getFrom()|truncate:40:"..."|escape}</td>
-		<td>{$logEntry->getRecipients()|truncate:40:"..."|escape}</td>
+		{if !strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor')}
+			<td>{$logEntry->getFrom()|truncate:40:"..."|escape}</td>
+			<td>{$logEntry->getRecipients()|truncate:40:"..."|escape}</td>
+		{else}
+			<td>[Names Hidden from Section Editors]</td>
+			<td>[Names Hidden from Section Editors]</td>
+		{/if}
 		<td>{$logEntry->getSubject()|truncate:60:"..."|escape}</td>
 		<td align="right"><a href="{url op="submissionEmailLog" path=$submission->getId()|to_array:$logEntry->getId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url page="editor" op="clearSubmissionEmailLog" path=$submission->getId()|to_array:$logEntry->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmDeleteLogEntry"}')" class="action">{translate key="common.delete"}</a>{/if}</td>
 	</tr>

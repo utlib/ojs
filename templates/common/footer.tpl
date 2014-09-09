@@ -20,6 +20,16 @@
 		{assign var=pageFooter value="$issnText: $issn"}
 	{/if}
 {/if}
+
+
 {include file="core:common/footer.tpl"}
+<div id="UofTfooter" style="margin: 0 auto; width: 100%; padding-left: 10%;">
+  {if !$currentJournal}
+    <img src="{$baseUrl}/templates/images/footer_white_bar.png" width="900" border="0" alt="" usemap="#lin" />
+    <map name="lin">
+    <area shape="rect" coords="494,9,891,95" href="http://www.library.utoronto.ca" alt=""/>
+    </map>
+  {/if}
+</div><!-- UofTfooter -->
 {/strip}
 

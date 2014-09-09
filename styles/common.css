@@ -470,6 +470,11 @@ ul.tagit input[type="text"] {
     outline: none;
 }
 
+/* ITS */
+.utl_pr {
+	float: right;
+	margin: 10px 176px 0 0;
+}
 
 /* @end */
 

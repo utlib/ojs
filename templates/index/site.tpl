@@ -19,6 +19,8 @@
 
 {if $intro}<div id="intro">{$intro|nl2br}</div>{/if}
 
+{assign var='showStudentDivision' value='1'}
+
 <a name="journals"></a>
 
 {if $useAlphalist}
@@ -26,12 +28,30 @@
 {/if}
 
 {iterate from=journals item=journal}
+
+  {if $journal->getSetting('studentJournal') and $showStudentDivision}<br /><h2 style="margin-right: 0; font-size: 2.1em; border-bottom: 2px dotted #000000;">Student Led Journals</h2>{assign var='showStudentDivision' value='0'}{/if}
+
+	{assign var="displayHomePageImage" value=$journal->getLocalizedSetting('homepageImage')}
+	{assign var="displayHomePageLogo" value=$journal->getLocalizedPageHeaderLogo(true)}
+	{assign var="displayPageHeaderLogo" value=$journal->getLocalizedPageHeaderLogo()}
+
+
 	{if $site->getSetting('showThumbnail')}
 		{assign var="displayJournalThumbnail" value=$journal->getLocalizedSetting('journalThumbnail')}
 		<div style="clear:left;">
 		{if $displayJournalThumbnail && is_array($displayJournalThumbnail)}
 			{assign var="altText" value=$journal->getLocalizedSetting('journalThumbnailAltText')}
 			<div class="homepageImage"><a href="{url journal=$journal->getPath()}" class="action"><img src="{$journalFilesPath}{$journal->getId()}/{$displayJournalThumbnail.uploadName|escape:"url"}" {if $altText != ''}alt="{$altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
+		{/if}
+		{if $displayHomePageImage && is_array($displayHomePageImage)}
+			{assign var="altText" value=$journal->getLocalizedSetting('homepageImageAltText')}
+			<div class="homepageImage"><a href="{url journal=$journal->getPath()}" class="action"><img src="{$journalFilesPath}{$journal->getId()}/{$displayHomePageImage.uploadName|escape:"url"}" {if $altText != ''}alt="{$altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
+		{elseif $displayHomePageLogo && is_array($displayHomePageLogo)}
+			{assign var="altText" value=$journal->getLocalizedSetting('homeHeaderLogoImageAltText')}
+			<div class="homepageImage"><a href="{url journal=$journal->getPath()}" class="action"><img src="{$journalFilesPath}{$journal->getId()}/{$displayHomePageLogo.uploadName|escape:"url"}" {if $altText != ''}alt="{$altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
+		{elseif $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+			{assign var="altText" value=$journal->getLocalizedSetting('pageHeaderLogoImageAltText')}
+			<div class="homepageImage"><a href="{url journal=$journal->getPath()}" class="action"><img src="{$journalFilesPath}{$journal->getId()}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $altText != ''}alt="{$altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
 		{/if}
 		</div>
 	{/if}
@@ -53,4 +73,9 @@
 <div id="journalListPageLinks">{page_links anchor="journals" name="journals" iterator=$journals}
 
 {include file="common/footer.tpl"}
+
+
+<div class='utl_pr'>
+<a href="http://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility">Accessibility</a>. Tell us about a <a href="http://accessibilityhelp.library.utoronto.ca">web accessibility problem</a>.
+</div>
 
