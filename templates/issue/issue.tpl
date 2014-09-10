@@ -13,7 +13,7 @@
 
 {foreach from=$section.articles item=article}
 	{assign var=articlePath value=$article->getBestArticleId($currentJournal)}
-	{assign var=showCoverPage value=($article->getLocalizedFileName() && $article->getLocalizedShowCoverPage() && !$article->getHideCoverPageToc($locale))}
+	{assign var=showCoverPage value=$article->getLocalizedFileName() && $article->getLocalizedShowCoverPage() && !$article->getHideCoverPageToc($locale)}
 
 <table class="tocArticle">
 <tr valign="top">
