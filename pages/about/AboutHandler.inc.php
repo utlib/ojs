@@ -46,13 +46,6 @@ class AboutHandler extends Handler {
 			if (isset($customAboutItems[AppLocale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[AppLocale::getLocale()]);
 			elseif (isset($customAboutItems[AppLocale::getPrimaryLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[AppLocale::getPrimaryLocale()]);
 
-			foreach ($this->_getPublicStatisticsNames() as $name) {
-				if ($journal->getSetting($name)) {
-					$templateMgr->assign('publicStatisticsEnabled', true);
-					break;
-				} 
-			}
-			
 			// Hide membership if the payment method is not configured
 			import('classes.payment.ojs.OJSPaymentManager');
 			$paymentManager = new OJSPaymentManager($request);
@@ -547,8 +540,17 @@ class AboutHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('helpTopicId','user.about');
 
+		foreach ($this->_getPublicStatisticsNames() as $name) {
+				if ($journal->getSetting($name)) {
+					$templateMgr->assign('publicStatisticsEnabled', true);
+					break;
+				} 
+			}
+
 		// Get the statistics year
 		$statisticsYear = (int) $request->getUserVar('statisticsYear');
+
+		$reportPlugins =& PluginRegistry::loadCategory('reports');
 
 		// Ensure that the requested statistics year is within a sane range
 		$journalStatisticsDao =& DAORegistry::getDAO('JournalStatisticsDAO');
@@ -606,7 +608,11 @@ class AboutHandler extends Handler {
 		}
 
 		$templateMgr->display('about/statistics.tpl');
+
 	}
+
+
+
 
 	/**
 	 * @see StatisticsHandler::_getPublicStatisticsNames()
@@ -616,6 +622,16 @@ class AboutHandler extends Handler {
 		import ('pages.manager.StatisticsHandler');
 		return StatisticsHandler::_getPublicStatisticsNames();
 	}
+
+	/**
+	 * @see StatisticsHandler::report()
+	 */
+	function report($args, $request) {
+		import ('pages.manager.ManagerHandler');
+		import ('pages.manager.StatisticsHandler');
+		return StatisticsHandler::report($args, $request);
+	}
+
 }
 
 ?>

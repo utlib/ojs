@@ -31,6 +31,7 @@ switch($op) {
 	case 'history':
 	case 'aboutThisPublishingSystem':
 	case 'statistics':
+	case 'report':
 		define('HANDLER_CLASS', 'AboutHandler');
 		import('pages.about.AboutHandler');
 		break;

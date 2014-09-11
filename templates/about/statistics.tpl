@@ -17,10 +17,12 @@
    implementation of the Journal Manager's statistics page.        *}
 <div id="statistics">
 <table width="100%" class="data">
+	{if $publicStatisticsEnabled}
 	<tr valign="top">
 		<td width="25%" class="label"><h4>{translate key="common.year"}</h4></td>
 		<td width="75%" colspan="2" class="value">
 			{strip}
+			
 			<h4>
 				{if $statisticsYear > $firstYear}
 					<a class="action" href="{url statisticsYear=$statisticsYear-1}">{translate key="navigation.previousPage"}</a>&nbsp;
@@ -30,10 +32,11 @@
 					&nbsp;<a class="action" href="{url statisticsYear=$statisticsYear+1}">{translate key="navigation.nextPage"}</a>
 				{/if}
 			</h4>
+			
 			{/strip}
 		</td>
 	</tr>
-
+	{/if}
 	{if $statNumPublishedIssues}<tr valign="top">
 		<td class="label">{translate key="manager.statistics.statistics.numIssues"}</td>
 		<td colspan="2" class="value">{$issueStatistics.numPublishedIssues}</td>
@@ -91,6 +94,14 @@
 		{/foreach}
 	{/if}
 </table>
+
+<div>
+<h4>{translate key="manager.statistics.reports"}</h4>
+<ul>
+<li><a href="../about/report/ViewReportPlugin">{translate key="plugins.reports.views.displayName"}</a></li>
+<li><a href="../about/report/CounterReportPlugin">{translate key="plugins.reports.counter"}</a></li>
+<ul>
+</div>
 </div>
 {include file="common/footer.tpl"}
 

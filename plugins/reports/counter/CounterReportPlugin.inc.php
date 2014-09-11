@@ -82,6 +82,24 @@ class CounterReportPlugin extends ReportPlugin {
 		$templateMgr->assign('pageHierarchy', $pageCrumbs);
 	}
 
+	function setBreadcrumbsAbout() {
+		$templateMgr =& TemplateManager::getManager();
+		$pageCrumbs = array(
+			array(
+				Request::url(null, 'about'),
+				'navigation.about'
+			),
+			array(
+				Request::url(null, 'about', 'statistics'),
+				'about.statistics'
+			)
+			
+		
+		);
+
+		$templateMgr->assign('pageHierarchy', $pageCrumbs);
+	}
+
 	/**
 	 * @see ReportPlugin::display()
 	 */
@@ -89,11 +107,21 @@ class CounterReportPlugin extends ReportPlugin {
 		parent::display($args);
 
 		$journal =& $request->getJournal();
-		if (!Validation::isSiteAdmin()) {
-			Validation::redirectLogin();
+		$path = $request->getRequestedPage();
+		
+		/**
+		* if (!Validation::isSiteAdmin()) {
+		*	Validation::redirectLogin();
+		*}
+		**/
+
+		if ($path == 'about') {
+			$this->setBreadcrumbsAbout();
+		} else {
+			$this->setBreadcrumbs();
 		}
 
-		$this->setBreadcrumbs();
+		
 		if ($request->getUserVar('type')) {
 			$oldStats = (boolean) $request->getUserVar('useOldCounterStats');
 			$year = (string) $request->getUserVar('year');
