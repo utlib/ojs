@@ -96,7 +96,7 @@
 </table>
 
 <div>
-<h4>{translate key="manager.statistics.reports"}</h4>
+<h3>{translate key="manager.statistics.reports"}</h3>
 <ul>
 <li><a href="../about/report/ViewReportPlugin">{translate key="plugins.reports.views.displayName"}</a></li>
 <li><a href="../about/report/CounterReportPlugin">{translate key="plugins.reports.counter"}</a></li>
