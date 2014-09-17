@@ -42,7 +42,7 @@
 	
 	<link rel="stylesheet" href="{$baseUrl}/styles/compiled.css" type="text/css" />
 	<!-- Google Fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>  -->
 	<!-- Base Jquery -->
 	{if $allowCDN}<script type="text/javascript" src="//www.google.com/jsapi"></script>
 		<script type="text/javascript">{literal}
