@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2011 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+  <message key="plugins.generic.awsummary.description">Displays a summary of AWStats figures. Requires external pre-processing.</message>
+  <message key="plugins.generic.awsummary">AWStats Summary</message>
+  <message key="plugins.generic.awsummary.enabled">The AWStats Summary Plugin has been enabled.</message>
+  <message key="plugins.generic.awsummary.disabled">The AWStats Summary Plugin has been disabled.</message>
+  <message key="plugins.generic.awsummary.dateofstatistics">Date of Statistics:</message>
+  <message key="plugins.generic.awsummary.toparticles">Top Article Pages</message>
+  <message key="plugins.generic.awsummary.toppages">Other Popular Pages</message>
+  <message key="plugins.generic.awsummary.topincoming">Incoming Links</message>
+  <message key="plugins.generic.awsummary.cities">Top Cities</message>
+  <message key="plugins.generic.awsummary.orgs">Top Organizations</message>
+  <message key="plugins.generic.awsummary.searchwords">Search Keywords</message>
+  <message key="plugins.generic.awsummary.downloadresults">Download results</message>
+</locale>
