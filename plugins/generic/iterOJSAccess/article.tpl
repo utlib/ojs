@@ -1,4 +1,4 @@
-{**
+{** 
  * article.tpl
  *
  * This is a modified version of article.tpl
