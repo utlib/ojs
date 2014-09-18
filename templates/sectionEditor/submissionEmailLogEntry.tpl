@@ -44,31 +44,56 @@
 	<tr valign="top">
 		<td class="label">{translate key="email.sender"}</td>
 		<td class="value">
-			{if $logEntry->getSenderFullName()}
-				{assign var=emailString value=$logEntry->getSenderFullName()|concat:" <":$logEntry->getSenderEmail():">"}
-				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getSubject() articleId=$submission->getId()}
-				{$logEntry->getSenderFullName()|escape} {icon name="mail" url=$url}
-			{else}
-				{translate key="common.notApplicable"}
-			{/if}
+            {if !strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor')}
+                {if $logEntry->getSenderFullName()}
+                    {assign var=emailString value=$logEntry->getSenderFullName()|concat:" <":$logEntry->getSenderEmail():">"}
+                    {url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getSubject() articleId=$submission->getId()}
+                    {$logEntry->getSenderFullName()|escape} {icon name="mail" url=$url}
+                {else}
+                    {translate key="common.notApplicable"}
+                {/if}
+            {else}
+                [Sender Name Hidden from Section Editor]
+            {/if}
 		</td>
 	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="email.from"}</td>
-		<td class="value">{$logEntry->getFrom()|escape}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="email.to"}</td>
-		<td class="value">{$logEntry->getRecipients()|escape}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="email.cc"}</td>
-		<td class="value">{$logEntry->getCcs()|escape}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="email.bcc"}</td>
-		<td class="value">{$logEntry->getBccs()|escape}</td>
-	</tr>
+
+    {if strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor')}
+        <tr valign="top">
+            <td class="label">{translate key="email.from"}</td>
+            <td class="value">[Sender Name Hidden from Section Editors]</td>
+        </tr>
+        <tr valign="top">
+            <td class="label">{translate key="email.to"}</td>
+            <td class="value">[Receiver Name Hidden from Section Editors]</td>
+        </tr>
+        <tr valign="top">
+            <td class="label">{translate key="email.cc"}</td>
+            <td class="value">[CC Hidden from Section Editors]</td>
+        </tr>
+        <tr valign="top">
+            <td class="label">{translate key="email.bcc"}</td>
+            <td class="value">[BCC Hidden from Section Editors]</td>
+        </tr>
+    {else}
+        <tr valign="top">
+            <td class="label">{translate key="email.from"}</td>
+            <td class="value">{$logEntry->getFrom()|escape}</td>
+        </tr>
+        <tr valign="top">
+            <td class="label">{translate key="email.to"}</td>
+            <td class="value">{$logEntry->getRecipients()|escape}</td>
+        </tr>
+        <tr valign="top">
+            <td class="label">{translate key="email.cc"}</td>
+            <td class="value">{$logEntry->getCcs()|escape}</td>
+        </tr>
+        <tr valign="top">
+            <td class="label">{translate key="email.bcc"}</td>
+            <td class="value">{$logEntry->getBccs()|escape}</td>
+        </tr>
+    {/if}
+
 	{if !empty($attachments)}
 		<tr valign="top">
 			<td class="label">{translate key="email.attachments"}</td>
@@ -83,7 +108,11 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="email.body"}</td>
-		<td class="value">{$logEntry->getBody()|escape|nl2br}</td>
+        {if strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor')}
+            <td>[E-mail Body Hidden from Section Editors]</td>
+        {else}
+    		<td class="value">{$logEntry->getBody()|escape|nl2br}</td>
+        {/if}
 	</tr>
 </table>
 {if $isEditor}

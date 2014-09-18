@@ -36,17 +36,22 @@
 		<td width="2%">1.</td>
 		<td width="26%">{translate key="user.role.author"}</td>
 		{assign var="authorProofreadSignoff" value=$submission->getSignoff('SIGNOFF_PROOFREADING_AUTHOR')}
-		<td>
-			{url|assign:"url" op="notifyAuthorProofreader" articleId=$submission->getId()}
-			{if $authorProofreadSignoff->getDateUnderway()}
-				{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.author.confirmRenotify"}
-				{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
-			{else}
-				{icon name="mail" url=$url}
-			{/if}
 
-			{$authorProofreadSignoff->getDateNotified()|date_format:$dateFormatShort|default:""}
-		</td>
+        {if strpos($smarty.server.PHP_SELF, '/ergo/sectionEditor')}
+            <td>&mdash;</td>
+        {else}
+            <td>
+                {url|assign:"url" op="notifyAuthorProofreader" articleId=$submission->getId()}
+                {if $authorProofreadSignoff->getDateUnderway()}
+                    {translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.author.confirmRenotify"}
+                    {icon name="mail" onclick="return confirm('$confirmText')" url=$url}
+                {else}
+                    {icon name="mail" url=$url}
+                {/if}
+
+                {$authorProofreadSignoff->getDateNotified()|date_format:$dateFormatShort|default:""}
+            </td>
+        {/if}
 		<td>
 				{$authorProofreadSignoff->getDateUnderway()|date_format:$dateFormatShort|default:"&mdash;"}
 		</td>
