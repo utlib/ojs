@@ -21,7 +21,6 @@
 	{/if}
 {/if}
 
-
 {include file="core:common/footer.tpl"}
 <div id="UofTfooter" style="margin: 0 auto; width: 100%; padding-left: 10%;">
   {if !$currentJournal}
@@ -31,4 +30,10 @@
     </map>
   {/if}
 </div><!-- UofTfooter -->
+
+<div class='utl_pr'>
+<a href="http://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility">Accessibility</a>. Tell us about a <a href="http://accessibilityhelp.library.utoronto.ca">web accessibility problem</a>.
+</div>
+
 {/strip}
+

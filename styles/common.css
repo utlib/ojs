@@ -476,5 +476,15 @@ ul.tagit input[type="text"] {
 	margin: 10px 176px 0 0;
 }
 
+.index-journal {
+    margin-bottom: 37px;
+    padding: 25px;
+    background: #F0F0F0;
+    border: solid 1px rgb(224, 224, 224);
+}
+
+#main {
+    overflow:visible;
+}
 /* @end */
 

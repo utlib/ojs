@@ -1,0 +1,151 @@
+/**** Layout ****/
+body {
+	/* margin: 0px 200px; */
+	font: 17px 'EB Garamond', serif;
+	padding:0;
+	margin:0;
+}
+
+/**** Header ****/
+#header img {
+	box-shadow: 4px 4px 4px #B8B8B8;
+	width: 900px;
+	display: block;
+	margin: 30px auto 40px;
+}
+
+/**** Sidebar ****/
+#rightSidebar {
+	float:right;
+	padding: 20px;
+	/* margin-left: 10px; */
+	box-shadow: 0 2px 6px #ACACAC;
+}
+
+/**** Main Menu / Nav ****/
+#nav {
+	background: #00204E;
+	box-shadow: 0 3px 3px #727272;
+}
+
+.navbar {
+	list-style:none;
+	background: #00204E;
+	color: white;
+	font-size: 20px;
+	margin: 0 auto;
+}
+
+#nav-login {
+	width: 1000px;	
+}
+
+#nav-nologin {
+	width: 800px;
+}
+
+.navbar li {
+	display:inline-block;	
+}
+
+.navbar a {
+	display:inline-block;
+	text-decoration:none;
+	padding:20px 20px;
+	color:white;
+	transition:background 0.2s;
+}
+
+.navbar a:hover {
+	background: #18478B;
+}
+
+/**** A-Z ****/
+#a-z {
+	width: 1000px;
+	margin: 30px auto;
+	padding: 0 25px;
+	background: #00204E;
+	box-shadow: 0 3px 4px #696969;
+}
+
+#a-z a {
+	text-decoration:none;	
+	color:white;
+	padding:10px;
+	font-size:25px;
+	display:inline-block;
+	transition:background 0.2s;	
+}
+
+#a-z a:hover, #a-z a#current {
+	background: #18478B;
+}
+
+/**** Journals List ****/
+.homepageImage img {
+	height: 100px;
+	max-width: 200px;
+	float: left;
+	margin-right: 25px;
+	margin-bottom: 20px;
+}
+
+#journals {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.index-journal {
+	border: solid 1px #ccc;
+	background: whitesmoke;
+	padding: 30px;
+	margin-bottom: 30px;
+	overflow:hidden;
+}
+
+.index-journal-nav {
+	float: right;
+	list-style: none;
+	margin: 0 0 15px 15px;
+	padding: 0;
+	border: solid 1px #ECECEC;
+	box-shadow: 0 1px 3px #ccc;
+	background: white;
+}
+
+.index-journal-nav a {
+	background: white;
+	/* border: 1px solid #ccc; */
+	display: inline-block;
+	text-decoration: none;
+	width: 80px;
+	text-align: center;
+	padding: 10px 15px;
+	color: #00204E;
+}
+
+.index-journal-nav a:hover {
+	background: #00204E;
+	color:white;
+}
+
+/**** Footer ****/
+.utl_pr {
+	width: 465px;
+margin: 20px auto;
+color: white;
+background: #00204E;
+text-align: center;
+padding: 10px;
+/* font-weight: 300; */
+font-size: 20px;
+}
+
+.utl_pr a {
+	color:white;
+}
+
+#UofTfooter {
+	margin: 30px 0;
+}

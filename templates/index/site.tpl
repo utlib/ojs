@@ -1,8 +1,8 @@
 {**
  * templates/index/site.tpl
  *
- * Copyright (c) 2013-2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2013-2014 Simon Fraser University Library & University of Toronto Library
+ * Copyright (c) 2003-2014 John Willinsky & Info. Tech. Services of University of Toronto Library
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Site index.
@@ -12,33 +12,20 @@
 {if $siteTitle}
 	{assign var="pageTitleTranslated" value=$siteTitle}
 {/if}
-{include file="common/header.tpl"}
+{include file="common/index_header.tpl"}
 {/strip}
-
-<br />
 
 {if $intro}<div id="intro">{$intro|nl2br}</div>{/if}
 
-{assign var='showStudentDivision' value='1'}
-
-<a name="journals"></a>
-
-{if $useAlphalist}
-	<p>{foreach from=$alphaList item=letter}<a href="{url searchInitial=$letter sort="title"}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
-{/if}
-
 {iterate from=journals item=journal}
-
-  {if $journal->getSetting('studentJournal') and $showStudentDivision}<br /><h2 style="margin-right: 0; font-size: 2.1em; border-bottom: 2px dotted #000000;">Student Led Journals</h2>{assign var='showStudentDivision' value='0'}{/if}
-
+  <div class='index-journal'>
+    
 	{assign var="displayHomePageImage" value=$journal->getLocalizedSetting('homepageImage')}
 	{assign var="displayHomePageLogo" value=$journal->getLocalizedPageHeaderLogo(true)}
 	{assign var="displayPageHeaderLogo" value=$journal->getLocalizedPageHeaderLogo()}
 
-
 	{if $site->getSetting('showThumbnail')}
 		{assign var="displayJournalThumbnail" value=$journal->getLocalizedSetting('journalThumbnail')}
-		<div style="clear:left;">
 		{if $displayJournalThumbnail && is_array($displayJournalThumbnail)}
 			{assign var="altText" value=$journal->getLocalizedSetting('journalThumbnailAltText')}
 			<div class="homepageImage"><a href="{url journal=$journal->getPath()}" class="action"><img src="{$journalFilesPath}{$journal->getId()}/{$displayJournalThumbnail.uploadName|escape:"url"}" {if $altText != ''}alt="{$altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
@@ -53,29 +40,26 @@
 			{assign var="altText" value=$journal->getLocalizedSetting('pageHeaderLogoImageAltText')}
 			<div class="homepageImage"><a href="{url journal=$journal->getPath()}" class="action"><img src="{$journalFilesPath}{$journal->getId()}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $altText != ''}alt="{$altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
 		{/if}
-		</div>
 	{/if}
-	{if $site->getSetting('showTitle')}
-		<h3>{$journal->getLocalizedTitle()|escape}</h3>
-	{/if}
-	{if $site->getSetting('showDescription')}
-		{if $journal->getLocalizedDescription()}
-			<p>{$journal->getLocalizedDescription()|nl2br}</p>
+	
+	<ul class='index-journal-nav'>		
+		<li><a target='_blank' href="{url journal=$journal->getPath()}" class="action">{translate key="site.journalView"}</a></li>
+		<li><a target='_blank' href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a></li>
+		<li><a target='_blank' href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a></li>
+	</ul>
+	
+	<div class='index-journal-text'>
+		{if $site->getSetting('showTitle')}
+			<h1>{$journal->getLocalizedTitle()|escape}</h1>
 		{/if}
-	{/if}
-	<p><a href="{url journal=$journal->getPath()}" class="action">{translate key="site.journalView"}</a> | <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a> | <a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a></p>
-{/iterate}
-{if $journals->wasEmpty()}
-	{translate key="site.noJournals"}
-{/if}
+		{if $site->getSetting('showDescription')}
+			{if $journal->getLocalizedDescription()}
+				<p>{$journal->getLocalizedDescription()|nl2br}</p>
+			{/if}
+		{/if}
+	</div>
 
-<div id="journalListPageInfo">{page_info iterator=$journals}</div>
-<div id="journalListPageLinks">{page_links anchor="journals" name="journals" iterator=$journals}
-
-{include file="common/footer.tpl"}
-
-
-<div class='utl_pr'>
-<a href="http://onesearch.library.utoronto.ca/university-toronto-libraries-and-online-accessibility">Accessibility</a>. Tell us about a <a href="http://accessibilityhelp.library.utoronto.ca">web accessibility problem</a>.
 </div>
+{/iterate}
 
+{include file="common/index_footer.tpl"}
