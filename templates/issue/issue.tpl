@@ -69,7 +69,8 @@
 	<td class="tocArticleGalleysPages{if $showCoverPage} showCoverImage{/if}">
 		<div class="tocGalleys">
 			{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
-				{foreach from=$article->getGalleys() item=galley name=galleyList}
+                { /* ITS - changed getGalleys to getLocalizedGalleys */ }
+				{foreach from=$article->getLocalizedGalleys() item=galley name=galleyList}
 					<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
 					{if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
 						{if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galley->isPdfGalley()}
